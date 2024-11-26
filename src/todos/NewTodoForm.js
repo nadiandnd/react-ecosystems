@@ -7,7 +7,7 @@ const NewTodoForm = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
 
-  const todos = useSelector((state) => state.todos.todos);
+  const todos = useSelector((state) => state.todos);
 
   return (
     <div className="new-todo-form">

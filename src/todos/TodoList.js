@@ -7,7 +7,7 @@ import { removeTodo } from "./actions";
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.todos);
+  const todos = useSelector((state) => state.todos);
 
   const handleRemove = (text) => {
     dispatch(removeTodo(text));

@@ -13,22 +13,20 @@ import {
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
 const persistConfig = {
-  key: "todos",
+  key: "root",
   storage,
   version: 1,
   stateReconciler: autoMergeLevel2,
 };
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   todos: todos,
 });
 
-const persistedTodosReducer = persistReducer(persistConfig, reducer);
+const persistedTodosReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: {
-    todos: persistedTodosReducer,
-  },
+  reducer: persistedTodosReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
