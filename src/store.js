@@ -23,10 +23,11 @@ const rootReducer = combineReducers({
   todos: todos,
 });
 
-const persistedTodosReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: persistedTodosReducer,
+  reducer: persistedReducer,
+  devTools: true,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -38,7 +39,5 @@ const store = configureStore({
 const persistor = persistStore(store, null, () => {
   console.log("Rehydration complete:", store.getState());
 });
-
-// const persistor = persistStore(store);
-
+persistor.purge();
 export { store, persistor };

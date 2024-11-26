@@ -3,7 +3,7 @@ import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./TodoListItem";
 import "./TodoList.css";
 import { useDispatch, useSelector } from "react-redux";
-import { removeTodo } from "./actions";
+import { markTodoAsCompleted, removeTodo } from "./actions";
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,9 @@ const TodoList = () => {
     dispatch(removeTodo(text));
   };
 
-  console.log(todos);
+  const handleMarkTodoAsCompleted = (text) => {
+    dispatch(markTodoAsCompleted(text));
+  };
 
   return (
     <div className="list-wrapper">
@@ -22,7 +24,8 @@ const TodoList = () => {
         <TodoListItem
           key={index}
           todo={todo}
-          onRemovePressed={() => handleRemove(todo.text)}
+          onRemovePressed={handleRemove}
+          onCompletedPressed={handleMarkTodoAsCompleted}
         />
       ))}
     </div>
