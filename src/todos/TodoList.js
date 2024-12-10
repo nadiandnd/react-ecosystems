@@ -4,10 +4,17 @@ import TodoListItem from "./TodoListItem";
 import "./TodoList.css";
 import { useDispatch, useSelector } from "react-redux";
 import { markTodoAsCompleted, removeTodo } from "./actions";
+import { loadTodos } from "./thunks";
 
 const TodoList = () => {
+  useEffect(() => {
+    startLoadingTodos();
+  }, []);
+
   const dispatch = useDispatch();
+
   const todos = useSelector((state) => state.todos);
+  const isLoading = useSelector((state) => state.isLoading);
 
   const handleRemove = (text) => {
     dispatch(removeTodo(text));
@@ -17,7 +24,11 @@ const TodoList = () => {
     dispatch(markTodoAsCompleted(text));
   };
 
-  return (
+  const startLoadingTodos = () => dispatch(loadTodos());
+
+  const loadingMessage = <div>Loading todos...</div>;
+
+  const content = (
     <div className="list-wrapper">
       <NewTodoForm />
       {todos.map((todo, index) => (
@@ -30,6 +41,7 @@ const TodoList = () => {
       ))}
     </div>
   );
+  return isLoading ? loadingMessage : content;
 };
 
 export default TodoList;
