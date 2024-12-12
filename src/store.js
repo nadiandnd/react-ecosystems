@@ -22,7 +22,6 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   todos,
-  isLoading,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
