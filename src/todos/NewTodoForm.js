@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./NewTodoForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { createTodo } from "./actions";
+import { addTodoRequest } from "./thunks";
 
 const NewTodoForm = () => {
   const [inputValue, setInputValue] = useState("");
@@ -24,7 +24,7 @@ const NewTodoForm = () => {
             (todo) => todo.text === inputValue
           );
           if (!isDuplicatedText && inputValue.trim() !== "") {
-            dispatch(createTodo(inputValue));
+            dispatch(addTodoRequest(inputValue));
             setInputValue("");
           }
         }}

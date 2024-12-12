@@ -3,8 +3,11 @@ import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./TodoListItem";
 import "./TodoList.css";
 import { useDispatch, useSelector } from "react-redux";
-import { markTodoAsCompleted, removeTodo } from "./actions";
-import { loadTodos } from "./thunks";
+import {
+  loadTodos,
+  removeTodoRequest,
+  markTodoAsCompletedRequest,
+} from "./thunks";
 
 const TodoList = () => {
   useEffect(() => {
@@ -16,12 +19,12 @@ const TodoList = () => {
   const todos = useSelector((state) => state.todos);
   const isLoading = useSelector((state) => state.isLoading);
 
-  const handleRemove = (text) => {
-    dispatch(removeTodo(text));
+  const handleRemove = (id) => {
+    dispatch(removeTodoRequest(id));
   };
 
-  const handleMarkTodoAsCompleted = (text) => {
-    dispatch(markTodoAsCompleted(text));
+  const handleMarkTodoAsCompleted = (id) => {
+    dispatch(markTodoAsCompletedRequest(id));
   };
 
   const startLoadingTodos = () => dispatch(loadTodos());
