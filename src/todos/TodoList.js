@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./TodoListItem";
 import "./TodoList.css";
@@ -13,6 +14,11 @@ import {
   removeTodoRequest,
   markTodoAsCompletedRequest,
 } from "./thunks";
+
+const ListWrapper = styled.div`
+  max-width: 700px;
+  margin: auto;
+`;
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -38,7 +44,7 @@ const TodoList = () => {
   const loadingMessage = <div>Loading todos...</div>;
 
   const content = (
-    <div className="list-wrapper">
+    <ListWrapper>
       <NewTodoForm />
       <h3>Incomplete:</h3>
       {inCompleteTodos.map((todo) => (
@@ -58,7 +64,7 @@ const TodoList = () => {
           onCompletedPressed={handleMarkTodoAsCompleted}
         />
       ))}
-    </div>
+    </ListWrapper>
   );
   return isLoading ? loadingMessage : content;
 };
