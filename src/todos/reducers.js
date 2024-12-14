@@ -5,7 +5,7 @@ import {
   LOAD_TODOS_FAILURE,
   LOAD_TODOS_IN_PROGRESS,
   LOAD_TODOS_SUCCESS,
-} from "./actions";
+} from "./actions.js";
 
 const initialState = { isLoading: false, data: [] };
 

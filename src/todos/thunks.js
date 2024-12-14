@@ -5,7 +5,7 @@ import {
   createTodo,
   removeTodo,
   markTodoAsCompleted,
-} from "./actions";
+} from "./actions.js";
 
 export const displayAlert = (text) => () => {
   alert(text);
